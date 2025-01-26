@@ -175,7 +175,7 @@ input[type="color"]:hover,
 }
 .custom-home-card:hover h5,
 .custom-home-card:hover p,
-.custom-home-card:hover i {
+.custom-home-card:hover .icon {
     color: var(--background-color) !important;
 }
 

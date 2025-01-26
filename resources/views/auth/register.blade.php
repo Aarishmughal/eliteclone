@@ -35,7 +35,7 @@
 <body>
     <!-- Back Button -->
     <a class="nav-link m-3 px-3 py-2 fs-5 position-fixed" id="back-button" href="{{ route('home') }}">
-        &larr;
+        <i class="bi bi-arrow-left"></i>
     </a>
 
     <!-- Main Content -->
@@ -56,8 +56,8 @@
                                             placeholder="First Name">
                                         <label for="fname">First Name<span class="text-danger">*</span></label>
                                         @if ($errors->has('fname'))
-                                            <span
-                                                class="text-danger small custom-error m-0">{{ $errors->first('fname') }}</span>
+                                        <span
+                                            class="text-danger small custom-error m-0">{{ $errors->first('fname') }}</span>
                                         @endif
                                     </div>
                                 </div>
