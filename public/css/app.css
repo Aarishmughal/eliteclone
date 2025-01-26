@@ -45,6 +45,57 @@ p {
     background-color: var(--secondary-color) !important;
     border-color: var(--secondary-color) !important;
 }
+.form-control,
+.form-select,
+label {
+    font-family: var(--body-font) !important;
+}
+textarea:focus,
+select:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 0 4px var(--primary-color) !important;
+    outline: none !important;
+    border-radius: 4px !important;
+    transition: border-color 0.3s, box-shadow 0.3s ease-in-out !important;
+}
+textarea:hover,
+select:hover,
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="datetime"]:hover,
+input[type="datetime-local"]:hover,
+input[type="date"]:hover,
+input[type="month"]:hover,
+input[type="time"]:hover,
+input[type="week"]:hover,
+input[type="number"]:hover,
+input[type="email"]:hover,
+input[type="url"]:hover,
+input[type="search"]:hover,
+input[type="tel"]:hover,
+input[type="color"]:hover,
+.uneditable-input:hover {
+    border-color: var(--primary-color);
+}
+.custom-error{
+    font-size: 0.8rem !important;
+    font-family: var(--body-font) !important;
+}
 /* HEADER STYLING */
 .dropdown-item {
     font-family: var(--button-font) !important;
@@ -101,6 +152,9 @@ p {
 .badge:hover {
     color: var(--primary-color) !important;
 }
+.link-active {
+    color: var(--primary-color) !important;
+}
 /* HOME PAGE STYLING */
 #hero-card {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -126,6 +180,13 @@ p {
 }
 
 /* PEOPLE PAGE STYLING */
+.custom-person-card {
+    transition: all 0.3s ease;
+}
+.custom-person-card:hover {
+    box-shadow: 0 4px 20px var(--primary-color) !important;
+    transform: translateY(-5px) !important;
+}
 .person-email {
     font-family: var(--button-font) !important;
     font-size: 0.8rem !important;

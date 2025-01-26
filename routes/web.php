@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::controller(App\Http\Controllers\AuthController::class)->group(function () {
+    Route::get('login', 'viewLogin')->name("login");
+    Route::post('login', 'login')->name("login");
+    Route::get('register', 'viewRegister')->name("register");
+    Route::post('register', 'register')->name("register");
+});
+
 Route::get('/', function () {
     return view('pages.home');
 })->name("home");

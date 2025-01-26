@@ -57,8 +57,8 @@
                                 href="#">Teaching</a>
                         </li>
                         <li class="nav-item m-1 dropdown">
-                            <a class="nav-link px-3 dropdown-toggle {{ request()->is('thesis') ? 'active' : '' }}" href="#" role="button"
-                                aria-expanded="false">
+                            <a class="nav-link px-3 dropdown-toggle {{ request()->is('thesis') ? 'active' : '' }}"
+                                href="#" role="button" aria-expanded="false">
                                 Thesis
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
@@ -70,18 +70,21 @@
 
                     <!-- Right-aligned Links -->
                     <ul class="navbar-nav ms-auto d-flex align-items-center">
-                        <li class="nav-item mx-1 dropdown" style="width: 100%">
-                            <a class="nav-link dropdown-toggle ps-3" href="#" role="button"
-                                aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                            </ul>
-                        </li>
+                        @guest
+                        @else
+                            <li class="nav-item mx-1 dropdown" style="width: 100%">
+                                <a class="nav-link dropdown-toggle ps-3" href="#" role="button"
+                                    aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                </ul>
+                            </li>
+                        @endguest
                         <li class="nav-item mx-1">
-                            <a class="nav-link px-3 fs-5" href="#"><i class="bi bi-brightness-high"></i></a>
+                            <button class="nav-link px-3 py-2" id="theme-toggle"><i class="bi"></i></button>
                         </li>
                     </ul>
                 </div>
@@ -90,20 +93,27 @@
     </nav>
     @yield('content')
     <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center pt-3 mt-4 border-top">
             <div class="col-md-4 d-flex align-items-center">
                 <a href="/" class="mb-0 me-2 text-body-secondary text-decoration-none lh-1">
                     <img src="{{ asset('images/logo_elite.png') }}" alt="Logo" height="34" />
                 </a>
-                <span class="text-body-secondary" style="font-family: 'Inter'; line-height: 1;">
+                <span class="text-body-secondary lh-1" style="font-family: 'Inter'">
                     &copy; {{ __(now()->year) }} e-lite, Inc
                 </span>
             </div>
-
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex align-items-center mb-0">
-                <li class="ms-3 d-flex align-items-center">
-                    <a class="text-body-secondary badge fw-normal" href="#">Admin Login</a>
-                </li>
+                @guest
+                    <li class="ms-3 d-flex align-items-center">
+                        <a class="text-body-secondary fw-normal {{ request()->routeIs('login') ? 'link-active' : '' }} badge"
+                            href="{{ route('login') }}">Admin Login</a>
+                    </li>
+                @else
+                    <li class="ms-3 d-flex align-items-center">
+                        <a class="text-body-secondary fw-normal {{ request()->routeIs('login') ? 'link-active' : '' }} badge"
+                            href="{{ route('login') }}">Logout</a>
+                    </li>
+                @endguest
                 <li class="ms-3 d-flex align-items-center">
                     <a class="text-body-secondary" href="#"><i class="bi bi-twitter"></i></a>
                 </li>
@@ -115,8 +125,10 @@
                 </li>
             </ul>
         </footer>
+        <p class="text-secondary text-center mb-4 form-text">Built with Laravel, Bootstrap & ♥</p>
 
     </div>
+    <script src="{{ asset('js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
