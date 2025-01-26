@@ -27,7 +27,7 @@
 <body style="margin: 0; padding: 0; width: 100vw; height: 100vh; overflow: hidden;">
     <!-- Back Button -->
     <a class="nav-link m-3 px-3 py-2 fs-5 position-fixed" id="back-button" href="{{ route('home') }}">
-        &larr;
+        <i class="bi bi-arrow-left"></i>
     </a>
 
     <!-- Main Content -->
