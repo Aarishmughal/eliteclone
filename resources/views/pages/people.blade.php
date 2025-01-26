@@ -25,7 +25,7 @@
                 <div class="card custom-person-card rounded-4">
                     <div class="card-body pt-0">
                         <img src="https://plchldr.co/i/100x100" class="rounded-circle my-3" />
-                        <h5 class="card-title ">Person Name</h5>
+                        <h5 class="card-title">Person Name</h5>
                         <p class="m-0">Some Quick Bio.</p>
                         <div class="mb-2 text-end"><a href="#" class="fst-italic person-email">email@address.com</a>
                         </div>
