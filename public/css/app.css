@@ -92,7 +92,7 @@ input[type="color"]:hover,
 .uneditable-input:hover {
     border-color: var(--primary-color);
 }
-.custom-error{
+.custom-error {
     font-size: 0.8rem !important;
     font-family: var(--body-font) !important;
 }
@@ -130,6 +130,14 @@ input[type="color"]:hover,
 .dropdown-item {
     margin: 0.25rem 0 !important;
     border-radius: 0.5rem !important;
+}
+.dropdown-item:focus {
+    background-color: transparent !important;
+    border-color: var(--primary-color) !important;
+}
+.dropdown-item:active {
+    background-color: var(--primary-color) !important;
+    color: white !important;
 }
 .dropdown:hover .dropdown-menu {
     display: block !important;
@@ -181,6 +189,7 @@ input[type="color"]:hover,
 
 /* PEOPLE PAGE STYLING */
 .custom-person-card {
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 .custom-person-card:hover {
