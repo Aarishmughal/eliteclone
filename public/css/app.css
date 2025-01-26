@@ -1,0 +1,137 @@
+/* Bootstrap Icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+    --heading-font: "Libre Baskerville", sans-serif;
+    --body-font: "Inter", sans-serif;
+    --button-font: "Work Sans", sans-serif;
+    --primary-color: #e95938;
+    --secondary-color: #702b1b;
+    --background-color: #f8fafc;
+    --tertiary-color: #2c2c2c;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--primary-color) !important;
+    font-family: var(--heading-font) !important;
+}
+
+a,
+p {
+    color: var(--text-color) !important;
+    font-family: var(--body-font) !important;
+}
+.btn-light {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    font-family: var(--button-font) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+.btn-light:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+.btn-light:active {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+.btn-light:focus {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+/* HEADER STYLING */
+.dropdown-item {
+    font-family: var(--button-font) !important;
+}
+#brand-title,
+.nav-link {
+    font-family: var(--button-font) !important;
+    font-size: 1rem !important;
+    border-radius: 2rem !important;
+    border: solid 1px transparent !important;
+    transition: all 0.3s ease-in-out !important;
+}
+.nav-link:hover {
+    border: solid 1px var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+    color: var(--background-color) !important;
+}
+.active {
+    border-radius: 2rem !important;
+    border: solid 1px var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+    color: var(--background-color) !important;
+}
+
+.dropdown-menu {
+    padding: 0.5rem !important;
+    border-radius: 0rem 0rem 0.5rem 0.5rem !important;
+    display: none !important;
+    opacity: 0 !important;
+    transition: all 0.7s ease-in-out !important;
+}
+.dropdown-item {
+    margin: 0.25rem 0 !important;
+    border-radius: 0.5rem !important;
+}
+.dropdown:hover .dropdown-menu {
+    display: block !important;
+    opacity: 1 !important;
+}
+.dropdown-toggle:hover {
+    border-radius: 2rem 2rem 0rem 0rem !important;
+}
+.custom-dropdown {
+    transform-origin: top right;
+    right: 0;
+    left: auto;
+}
+
+/* FOOTER STYLING */
+.badge {
+    font-family: var(--button-font) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+.badge:hover {
+    color: var(--primary-color) !important;
+}
+/* HOME PAGE STYLING */
+#hero-card {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+#hero-card:hover {
+    box-shadow: 0 4px 20px var(--primary-color) !important;
+    transform: translateY(-5px) !important;
+}
+.custom-home-card {
+    height: 250px !important;
+    transition: all 0.3s ease;
+}
+.custom-home-card:hover {
+    background-color: var(--primary-color) !important;
+    box-shadow: 0 4px 20px var(--primary-color) !important;
+    transform: translateY(-5px) !important;
+}
+.custom-home-card:hover h5,
+.custom-home-card:hover p,
+.custom-home-card:hover i {
+    color: var(--background-color) !important;
+}
+
+/* PEOPLE PAGE STYLING */
+.person-email {
+    font-family: var(--button-font) !important;
+    font-size: 0.8rem !important;
+    text-decoration: none !important;
+    color: var(--primary-color) !important;
+}
+.person-email:hover {
+    text-decoration: underline !important;
+}
