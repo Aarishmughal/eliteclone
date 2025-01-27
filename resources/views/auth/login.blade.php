@@ -32,16 +32,26 @@
                 <div class="card shadow-lg p-3">
                     <div class="card-body">
                         <h3 class="card-title mb-4">Administrator Login</h3>
-                        <form action="{{ route('login') }}" method="POST">
+                        <form action="{{ Route('authenticate') }}" method="POST">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="email"
-                                    placeholder="name@example.com">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                    id="email" name="email" value="{{ old('email') }}"
+                                    placeholder="Email Address">
                                 <label for="email">Email address</label>
+                                @if ($errors->has('email'))
+                                    <span
+                                        class="text-danger small custom-error m-0">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
                             <div class="form-floating mb-1">
-                                <input type="password" class="form-control" id="password" placeholder="*******">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    id="password" name="password" placeholder="Password">
                                 <label for="password">Password</label>
+                                @if ($errors->has('password'))
+                                    <span
+                                        class="text-danger small custom-error m-0">{{ $errors->first('password') }}</span>
+                                @endif
                             </div>
                             <a href="#" class="form-text badge fw-normal p-0" style="font-size: 0.8rem">Forgot
                                 Password?</a>
@@ -55,37 +65,7 @@
             </div>
         </div>
     </div>
-
-    <div class="toast-container">
-        @if (session('error'))
-            <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive"
-                aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        <i class="bi bi-x-circle"></i>
-                        {{ session('error') }}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                        aria-label="Close"></button>
-                </div>
-            </div>
-        @endif
-
-        @if (session('success'))
-            <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive"
-                aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        <i class="bi bi-check-circle"></i>
-                        {{ session('success') }}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                        aria-label="Close"></button>
-                </div>
-            </div>
-        @endif
-    </div>
-
+    @include('template.toast')
     <!-- Back Button -->
     <a class="nav-link m-lg-3 m-md-2 m-sm-2 px-3 py-2 fs-5 position-fixed" id="back-button" href="{{ route('home') }}">
         <i class="bi bi-arrow-left"></i>

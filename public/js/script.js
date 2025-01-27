@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const icon = themeToggleButton.querySelector("i");
         icon.className = theme === "dark" ? "bi bi-sun" : "bi bi-moon";
     }
+
+    // Toast Generation
     document.addEventListener("DOMContentLoaded", function () {
         var toastElList = [].slice.call(document.querySelectorAll(".toast"));
         var toastList = toastElList.map(function (toastEl) {
@@ -29,22 +31,31 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         toastList.forEach((toast) => toast.show());
     });
+
+    // Tooltip Initialization
+    const tooltipTriggerList = document.querySelectorAll(
+        '[data-bs-toggle="tooltip"]'
+    );
+    const tooltipList = [...tooltipTriggerList].map(
+        (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+    );
 });
 
-let socialMediaCount = 1; // Counter for social media fields
-const maxLinks = 9; // Maximum number of links
+// Social Media Fields
+let socialMediaCount = 1;
+const maxLinks = 5;
 
 function addSocialMediaRow(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
     if (socialMediaCount <= maxLinks) {
         const div = document.createElement("div");
-        div.className = "row"; // Styling for the row
+        div.className = "row";
 
         div.innerHTML = `
                 <div class="col-lg">
                     <div class="form-floating mb-3">
-                        <select class="form-select" id="socialPlatform${socialMediaCount}" name="socialPlatform${socialMediaCount}">
+                        <select class="form-select" id="socialPlatform${socialMediaCount}" name="socialMedia[${socialMediaCount}][platform]">
                             <option value="Facebook">Facebook</option>
                             <option value="LinkedIn">LinkedIn</option>
                             <option value="Twitter">Twitter</option>
@@ -57,8 +68,10 @@ function addSocialMediaRow(event) {
                 </div>
                 <div class="col-lg">
                     <div class="form-floating mb-3">
-                        <input type="text" id="socialMedia${socialMediaCount}" name="socialMedia${socialMediaCount}" 
-                            placeholder="Enter Social Media Link" class="form-control" />
+                        <input type="text" id="socialMedia${socialMediaCount}" 
+                            name="socialMedia[${socialMediaCount}][link]" 
+                            placeholder="Enter Social Media Link" 
+                            class="form-control" />
                         <label for="socialMedia${socialMediaCount}">Social Media Link</label>
                     </div>
                 </div>
@@ -71,12 +84,12 @@ function addSocialMediaRow(event) {
         document.getElementById("socialMediaLinks").appendChild(div);
         socialMediaCount++;
     } else {
-        alert("Maximum of 9 social media links exceeded!");
+        alert(`Maximum of ${maxLinks} social media links exceeded!`);
     }
 }
 
 function removeSocialMediaRow(button) {
-    const row = button.closest(".row"); // Get the closest row element
+    const row = button.closest(".row");
     document.getElementById("socialMediaLinks").removeChild(row);
     socialMediaCount--;
 }

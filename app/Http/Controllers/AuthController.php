@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SocialMediaLink;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends BaseController
@@ -19,13 +21,33 @@ class AuthController extends BaseController
     {
         return view("auth.login");
     }
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email|max:250',
+            'password' => 'required',
+        ], [
+            'email.required' => 'Email address is required.',
+            'email.email' => 'Email Address is Invalid.',
+            "email.max" => "Email Address is Invalid.",
+            'password.required' => 'Password is required.',
+        ]);
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('home')->with("success", "You have successfully logged in!");
+        } else {
+            return back()->withErrors([
+                "email",
+                "Your provided credentials do not match in our records."
+            ])->onlyInput('email');
+        }
+    }
     public function viewRegister()
     {
         return view("auth.register");
     }
-    public function register(Request $request)
+    public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255',
@@ -61,9 +83,40 @@ class AuthController extends BaseController
             'bio' => $request->bio,
         ]);
         if ($user) {
-            return redirect()->route('home')->with('success', 'Account created successfully.');
+            $validatedData = $request->validate([
+                'socialMedia' => 'nullable|array|max:5',
+                'socialMedia.*.platform' => 'required_with:socialMedia.*.link|string|in:Facebook,LinkedIn,Twitter,Instagram,YouTube,Other',
+                'socialMedia.*.link' => 'nullable|url',
+            ], [
+                'socialMedia.max' => 'Total Social Media Links Limit Exceeded.',
+                'socialMedia.*.platform.in' => 'Invalid Platform Chosen.'
+            ]);
+
+            $socialMediaLinks = $validatedData['socialMedia'];
+            $new_admin = User::where('email', $request->email)->first();
+            foreach ($socialMediaLinks as $socialMedia) {
+                SocialMediaLink::create([
+                    'user_id' => $new_admin->id,
+                    'platform_name' => $socialMedia['platform'],
+                    'account_link' => $socialMedia['link'],
+                    'account_link' => (substr($socialMedia['link'], 0, 8) == "https://" ? $socialMedia['link'] : "https://" . $socialMedia['link']),
+                ]);
+            }
+
+            $credentials = $request->only("email", "password");
+            Auth::attempt($credentials);
+            $request->session()->regenerate();
+
+            return redirect()->route('home')->with('success', 'Administrator added successfully.');
         } else {
-            return back()->with('error', 'Failed to create account.');
+            return back()->with('error', 'Failed to create administrator account.');
         }
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route("home")->withSuccess("You have successfully logged out!");
     }
 }

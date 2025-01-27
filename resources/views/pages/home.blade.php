@@ -1,5 +1,5 @@
 @extends('template.layouts')
-@section('title', 'Home | e-lite Research Group')
+@section('title', 'Home | AUMC Research Group')
 @section('content')
 <div class="container d-flex align-items-center justify-content-center " style="height: 75vh">
     <div class="card p-4 shadow-lg" id="hero-card">
