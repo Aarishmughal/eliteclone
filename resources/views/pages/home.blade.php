@@ -14,7 +14,7 @@
             </div>
             <div class="col-lg-5">
                 <div class="card bg-info-subtle border-0">
-                    <h4 class="card-header p-3 text-dark">Quick Links</h4>
+                    <h4 class="card-header p-3 bg-dark-subtle">Quick Links</h4>
                     <div class="card-body">
                         <ul class="list-group">
                             <li class="list-group-item border-info-subtle list-group-item-action list-group-item-info">

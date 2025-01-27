@@ -20,6 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const icon = themeToggleButton.querySelector("i");
         icon.className = theme === "dark" ? "bi bi-sun" : "bi bi-moon";
     }
+    document.addEventListener("DOMContentLoaded", function () {
+        var toastElList = [].slice.call(document.querySelectorAll(".toast"));
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl, {
+                delay: 5000,
+            });
+        });
+        toastList.forEach((toast) => toast.show());
+    });
 });
 
 let socialMediaCount = 1; // Counter for social media fields

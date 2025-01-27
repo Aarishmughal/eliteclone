@@ -7,8 +7,10 @@
     --heading-font: "Libre Baskerville", sans-serif;
     --body-font: "Inter", sans-serif;
     --button-font: "Work Sans", sans-serif;
-    --primary-color: #e95938;
-    --secondary-color: #702b1b;
+    /* --primary-color: indigo; */
+    /* --secondary-color: rgb(122, 0, 209); */
+    --primary-color: #158bc1;
+    --secondary-color: #093d55;
     --background-color: #f8fafc;
     --tertiary-color: #2c2c2c;
 }
@@ -44,6 +46,12 @@ p {
 .btn-light:focus {
     background-color: var(--secondary-color) !important;
     border-color: var(--secondary-color) !important;
+}
+.toast-container {
+    position: fixed !important;
+    bottom: 0.8rem;
+    right: 0.8rem;
+    z-index: 1050;
 }
 .form-control,
 .form-select,
@@ -183,6 +191,7 @@ input[type="color"]:hover,
 }
 .custom-home-card:hover h5,
 .custom-home-card:hover p,
+.custom-home-card:hover .btn,
 .custom-home-card:hover .icon {
     color: var(--background-color) !important;
 }
