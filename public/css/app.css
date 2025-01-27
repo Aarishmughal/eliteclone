@@ -159,7 +159,6 @@ input[type="color"]:hover,
     right: 0;
     left: auto;
 }
-
 /* FOOTER STYLING */
 .badge {
     font-family: var(--button-font) !important;
@@ -213,4 +212,24 @@ input[type="color"]:hover,
 }
 .person-email:hover {
     text-decoration: underline !important;
+}
+
+/* WIZARD PAGE STYLING */
+.btn-light-outline {
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+}
+.btn-light-outline:hover {
+    border-color: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+    color: var(--background-color) !important;
+}
+#username-text {
+    font-family: var(--button-font) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+#username-text:hover {
+    cursor: pointer;
+    border-color: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
 }

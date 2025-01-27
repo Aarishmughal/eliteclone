@@ -7,7 +7,7 @@ Route::controller(App\Http\Controllers\AuthController::class)->group(function ()
     Route::post('login', 'authenticate')->name("authenticate");
     Route::get('register', 'viewRegister')->name("register");
     Route::post('register', 'store')->name("store");
-    Route::post("logout","logout")->name("logout");
+    Route::post("logout", "logout")->name("logout");
 });
 
 Route::get('/', function () {
@@ -22,3 +22,6 @@ Route::get("/people", function () {
 Route::get("/research", function () {
     return view('pages.research');
 })->name("research");
+Route::get("/admin/wizard", function () {
+    return view('pages.wizard');
+})->name("wizard");
