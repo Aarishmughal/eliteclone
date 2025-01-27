@@ -73,13 +73,19 @@
                     <ul class="navbar-nav ms-auto d-flex align-items-center">
                         @guest
                         @else
-                            <li class="nav-item mx-1 dropdown" style="width: 100%">
+                            <li class="nav-item mx-1 dropdown w-100" id="navbar-dropdown">
                                 <a class="nav-link dropdown-toggle ps-3" href="#" role="button"
                                     aria-expanded="false">
                                     {{ Auth::user()->username }}
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                <ul class="dropdown-menu dropdown-menu-end custom-dropdown" id="navbar-dropdown-menu">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-1"></i>Profile</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ Route('wizard') }}"><i
+                                                class="bi bi-plus-circle me-1"></i>Add
+                                            Content</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-code-slash me-1"></i>Site
+                                            Content</a></li>
                                     <li><a class="dropdown-item bg-danger-subtle" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"><i
@@ -99,7 +105,7 @@
     @yield('content')
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center pt-3 mt-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
+            <div class="col-12 col-sm-4 d-flex align-items-center">
                 <a href="/" class="mb-0 me-2 text-body-secondary text-decoration-none lh-1">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" height="34" />
                 </a>
@@ -107,7 +113,7 @@
                     &copy; {{ __(now()->year) }} AUMC, Inc
                 </span>
             </div>
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex align-items-center mb-0">
+            <ul class="nav col-12 col-sm-4 d-flex align-items-center justify-content-end list-unstyled mb-0">
                 @guest
                     <li class="ms-3 d-flex align-items-center">
                         <a class="text-body-secondary fw-normal {{ request()->routeIs('login') ? 'link-active' : '' }} badge"
