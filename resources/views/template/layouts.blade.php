@@ -33,7 +33,8 @@
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <b class="offcanvas-title fs-3" id="offcanvasNavbarLabel" id="brand-title">AUMC
+                    <b class="offcanvas-title fs-3" id="offcanvasNavbarLabel" id="brand-title"
+                        style="font-family: 'Inter'">AUMC
                     </b>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
@@ -75,11 +76,15 @@
                             <li class="nav-item mx-1 dropdown" style="width: 100%">
                                 <a class="nav-link dropdown-toggle ps-3" href="#" role="button"
                                     aria-expanded="false">
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->username }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
                                     <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item bg-danger-subtle" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"><i
+                                                class="bi bi-power me-1"></i>Logout</a>
+                                    </li>
                                 </ul>
                             </li>
                         @endguest
@@ -111,10 +116,16 @@
                 @else
                     <li class="ms-3 d-flex align-items-center">
                         <a class="text-body-secondary fw-normal {{ request()->routeIs('login') ? 'link-active' : '' }} badge"
-                            href="{{ route('login') }}">Logout</a>
+                            href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                        </form>
                     </li>
                 @endguest
-                <li class="ms-3 d-flex align-items-center">
+                <li class="ms-3
+                            d-flex align-items-center">
                     <a class="text-body-secondary" href="#"><i class="bi bi-twitter"></i></a>
                 </li>
                 <li class="ms-3 d-flex align-items-center">
@@ -129,35 +140,7 @@
             <a href="https://getbootstrap.com/">Bootstrap</a> & ♥
         </p>
     </div>
-    <div class="toast-container">
-        @if (session('error'))
-            <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive"
-                aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        <i class="bi bi-x-circle"></i>
-                        {{ session('error') }}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                        aria-label="Close"></button>
-                </div>
-            </div>
-        @endif
-
-        @if (session('success'))
-            <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive"
-                aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        <i class="bi bi-check-circle"></i>
-                        {{ session('success') }}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                        aria-label="Close"></button>
-                </div>
-            </div>
-        @endif
-    </div>
+    @include('template.toast')
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

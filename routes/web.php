@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(App\Http\Controllers\AuthController::class)->group(function () {
     Route::get('login', 'viewLogin')->name("login");
-    Route::post('login', 'login')->name("login");
+    Route::post('login', 'authenticate')->name("authenticate");
     Route::get('register', 'viewRegister')->name("register");
-    Route::post('register', 'register')->name("register");
+    Route::post('register', 'store')->name("store");
+    Route::post("logout","logout")->name("logout");
 });
 
 Route::get('/', function () {
