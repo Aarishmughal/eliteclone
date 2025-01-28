@@ -208,7 +208,7 @@
 
     <!-- Back Button -->
     <a class="nav-link m-lg-3 m-md-2 m-sm-2 px-3 py-2 fs-5 position-fixed" id="back-button"
-        href="{{ route('home') }}">
+        href="{{ route('wizard') }}">
         <i class="bi bi-arrow-left"></i>
     </a>
 

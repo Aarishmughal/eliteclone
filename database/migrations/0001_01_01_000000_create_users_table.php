@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('password');
             $table->text('bio')->nullable();
+            $table->boolean('is_admin')->default(true);
             $table->timestamps();
         });
 

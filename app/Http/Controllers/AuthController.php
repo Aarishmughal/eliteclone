@@ -15,6 +15,11 @@ class AuthController extends BaseController
     {
         $this->middleware('guest')->except([
             'logout',
+            'viewWizard',
+        ]);
+        $this->middleware('auth')->only([
+            'logout',
+            'viewWizard',
         ]);
     }
     public function viewLogin()
@@ -118,5 +123,9 @@ class AuthController extends BaseController
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route("home")->withSuccess("You have successfully logged out!");
+    }
+    public function viewWizard()
+    {
+        return view('pages.wizard');
     }
 }

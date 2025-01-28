@@ -51,7 +51,7 @@
                     <h3 class="card-title mb-4">Select Content to Add</h3>
                     <div class="row mb-3">
                         <div class="col-lg">
-                            <a href="#" class="btn btn-light-outline btn-lg w-100 text-start"><i
+                            <a href="{{ Route('people.add') }}" class="btn btn-light-outline btn-lg w-100 text-start"><i
                                     class="bi bi-person me-2"></i>Add People</a>
                         </div>
                     </div>
