@@ -77,7 +77,7 @@
                             <li class="nav-item mx-1 dropdown w-100" id="navbar-dropdown">
                                 <a class="nav-link dropdown-toggle ps-3" href="#" role="button"
                                     aria-expanded="false">
-                                    {{ Auth::user()->username }}
+                                    {{ Auth::user()->fname . ' ' . Auth::user()->mname . ' ' . Auth::user()->lname }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end custom-dropdown" id="navbar-dropdown-menu">
                                     <li><a class="dropdown-item" href="#"><i class="bi bi-person me-1"></i>Profile</a>

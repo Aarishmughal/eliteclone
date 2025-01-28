@@ -57,7 +57,6 @@ class AuthController extends BaseController
             'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
-            'username' => 'required|string|alpha_num|unique:users,username|max:255',
             'email' => 'required|email|unique:users,email|max:255',
             'gender' => 'required|in:male,female',
             'phone' => 'required|numeric|digits_between:10,15',
@@ -67,8 +66,6 @@ class AuthController extends BaseController
             'fname.required' => 'First name is required.',
             'mname.required' => 'Middle name is required.',
             'lname.required' => 'Last name is required.',
-            'username.required' => 'Username is required.',
-            'username.unique' => 'Username already exists.',
             'email.required' => 'Email address is required.',
             'email.unique' => 'Email address already exists.',
             'gender.required' => 'Gender is required.',
@@ -80,7 +77,6 @@ class AuthController extends BaseController
             'fname' => $request->fname,
             'mname' => $request->mname,
             'lname' => $request->lname,
-            'username' => $request->username,
             'email' => $request->email,
             'gender' => $request->gender,
             'phone' => "+92" . (substr($request->phone, 0, 1) == "0" ? substr($request->phone, 1) : $request->phone),
@@ -96,22 +92,21 @@ class AuthController extends BaseController
                 'socialMedia.max' => 'Total Social Media Links Limit Exceeded.',
                 'socialMedia.*.platform.in' => 'Invalid Platform Chosen.'
             ]);
-
-            $socialMediaLinks = $validatedData['socialMedia'];
-            $new_admin = User::where('email', $request->email)->first();
-            foreach ($socialMediaLinks as $socialMedia) {
-                SocialMediaLink::create([
-                    'user_id' => $new_admin->id,
-                    'platform_name' => $socialMedia['platform'],
-                    'account_link' => $socialMedia['link'],
-                    'account_link' => (substr($socialMedia['link'], 0, 8) == "https://" ? $socialMedia['link'] : "https://" . $socialMedia['link']),
-                ]);
+            if ($validatedData) {
+                $socialMediaLinks = $validatedData['socialMedia'];
+                $new_admin = User::where('email', $request->email)->first();
+                foreach ($socialMediaLinks as $socialMedia) {
+                    SocialMediaLink::create([
+                        'user_id' => $new_admin->id,
+                        'platform_name' => $socialMedia['platform'],
+                        'account_link' => $socialMedia['link'],
+                        'account_link' => (substr($socialMedia['link'], 0, 8) == "https://" ? $socialMedia['link'] : "https://" . $socialMedia['link']),
+                    ]);
+                }
             }
-
             $credentials = $request->only("email", "password");
             Auth::attempt($credentials);
             $request->session()->regenerate();
-
             return redirect()->route('home')->with('success', 'Administrator added successfully.');
         } else {
             return back()->with('error', 'Failed to create administrator account.');

@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('fname');
             $table->string('mname');
             $table->string('lname');
-            $table->string('username')->unique();
+            $table->string("image")->nullable();
             $table->string('email')->unique();
             $table->enum('gender', ['male', 'female']);
             $table->string('phone')->unique();
-            $table->string('password');
+            $table->string('password')->default("");
             $table->text('bio')->nullable();
             $table->boolean('is_admin')->default(true);
             $table->timestamps();
