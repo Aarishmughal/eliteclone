@@ -170,7 +170,7 @@
                             </div>
                         </div>
                         <div id="socialMediaLinks" class="mb-3"></div>
-                        <button type="submit" class="btn btn-light w-100 mb-2">Register</button>
+                        <button type="submit" class="btn btn-light w-100 mb-2">Add People</button>
                         <div class="row">
                             <div class="col-lg">
                                 <div class="card p-3 bg-warning-subtle">

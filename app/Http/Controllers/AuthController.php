@@ -87,7 +87,7 @@ class AuthController extends BaseController
             $validatedData = $request->validate([
                 'socialMedia' => 'nullable|array|max:5',
                 'socialMedia.*.platform' => 'required_with:socialMedia.*.link|string|in:Facebook,LinkedIn,Twitter,Instagram,YouTube,Other',
-                'socialMedia.*.link' => 'nullable|url',
+                'socialMedia.*.link' => 'nullable',
             ], [
                 'socialMedia.max' => 'Total Social Media Links Limit Exceeded.',
                 'socialMedia.*.platform.in' => 'Invalid Platform Chosen.'

@@ -137,8 +137,8 @@
                                     <input type="password" class="form-control @error('password') is-invalid @enderror"
                                         id="password" name="password" placeholder="Password">
                                     <label for="password">Password<span class="text-danger">*</span>
-                                        <button class="btn btn-light badge text-bg-primary pe-auto px-1"
-                                            type="button" data-bs-toggle="tooltip" data-bs-placement="right"
+                                        <button class="btn pe-auto p-0 pb-1" type="button"
+                                            data-bs-toggle="tooltip" data-bs-placement="right"
                                             data-bs-custom-class="custom-tooltip"
                                             title="Must be atleast 8 characters long."><i
                                                 class="bi bi-info-circle"></i></button></label>
