@@ -36,10 +36,10 @@ class AuthController extends BaseController
             $request->session()->regenerate();
             return redirect()->route('home')->with("success", "You have successfully logged in!");
         } else {
-            return back()->withErrors([
-                "email",
+            return back()->with(
+                "error",
                 "Your provided credentials do not match in our records."
-            ])->onlyInput('email');
+            )->onlyInput('email');
         }
     }
     public function viewRegister()

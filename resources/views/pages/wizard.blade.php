@@ -20,6 +20,10 @@
             overflow-y: auto;
         }
 
+        .custom-tooltip {
+            font-family: 'Inter' !important;
+        }
+
         #back-button {
             top: 10px;
             left: 10px;
@@ -98,7 +102,8 @@
 
     <!-- Top Right Text -->
     <p class="m-lg-3 m-md-2 m-sm-2 px-3 py-2 position-fixed fw-normal border rounded-5" id="username-text"
-        data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Currently logged in as">
+        data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Currently logged in as"
+        data-bs-custom-class="custom-tooltip">
         {{ Auth::user()->username }}</p>
 
     <!-- Theme Toggle Button -->

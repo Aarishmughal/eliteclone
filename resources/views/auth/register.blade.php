@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/jquery.js') }}"></script>
     <title>Admin Register | AUMC Research Group</title>
     <style>
         body {
@@ -87,8 +88,8 @@
                                         value="{{ old('username') }}" id="username" name="username"
                                         placeholder="Username">
                                     <label for="username">Username<span class="text-danger">*</span>
-                                        <button class="btn btn-light badge text-bg-primary pe-auto px-1"
-                                            type="button" data-bs-toggle="tooltip" data-bs-placement="right"
+                                        <button class="btn btn-light badge text-bg-primary pe-auto px-1" type="button"
+                                            data-bs-toggle="tooltip" data-bs-placement="right"
                                             title="This Name will be used when managing the website as an Admin."><i
                                                 class="bi bi-info-circle"></i></button>
                                     </label>
