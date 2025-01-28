@@ -25,6 +25,11 @@
             left: 10px;
         }
 
+        #username-text {
+            top: 10px;
+            right: 10px;
+        }
+
         #theme-toggle {
             bottom: 20px;
             right: 20px;
@@ -40,8 +45,28 @@
             <div class="card shadow-lg p-3">
                 <div class="card-body">
                     <h3 class="card-title mb-4">Add People</h3>
-                    <form action="{{ route('store') }}" method="POST">
+                    <form action="{{ route('people.add') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <div class="row">
+                            <div class="col-lg">
+                                <div class="mb-3">
+                                    <label for="image" class="form-label mb-1">Person Image<button
+                                            class="btn pe-auto p-0 ms-1 pb-1" type="button" data-bs-toggle="tooltip"
+                                            data-bs-custom-class="custom-tooltip" data-bs-placement="right"
+                                            title="Less than 5MBs in Size"><i
+                                                class="bi bi-info-circle"></i></button></label>
+                                    <input type="file"
+                                        class="form-control form-control-lg @error('image') is-invalid @enderror"
+                                        name="image" id="image" accept=".png,.pneg,.jpg,.jpeg,.webp,.svg"
+                                        placeholder="Upload file">
+                                    @if ($errors->has('image'))
+                                        <span
+                                            class="text-danger small custom-error m-0">{{ $errors->first('image') }}</span>
+                                    @endif
+                                </div>
+
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg">
                                 <div class="form-floating mb-3">
@@ -83,26 +108,9 @@
                         <div class="row">
                             <div class="col-lg">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                        value="{{ old('username') }}" id="username" name="username"
-                                        placeholder="Username">
-                                    <label for="username">Username<span class="text-danger">*</span>
-                                        <button class="btn btn-light badge text-bg-primary pe-auto px-1" type="button"
-                                            data-bs-toggle="tooltip" data-bs-placement="right"
-                                            title="This Name will be used when managing the website as an Admin."><i
-                                                class="bi bi-info-circle"></i></button>
-                                    </label>
-                                    @if ($errors->has('username'))
-                                        <span
-                                            class="text-danger small custom-error m-0">{{ $errors->first('username') }}</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-lg">
-                                <div class="form-floating mb-3">
                                     <input type="email" class="form-control @error('email') is-invalid @enderror"
                                         value="{{ old('email') }}" id="email" name="email"
-                                        placeholder="name@example.com">
+                                        placeholder="Email Address">
                                     <label for="email">Email address<span class="text-danger">*</span></label>
                                     @if ($errors->has('email'))
                                         <span
@@ -122,7 +130,7 @@
                                         <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female
                                         </option>
                                     </select>
-                                    <label for="gender">Gender</label>
+                                    <label for="gender">Gender<span class="text-danger">*</span></label>
                                     @if ($errors->has('gender'))
                                         <span
                                             class="text-danger small custom-error m-0">{{ $errors->first('gender') }}</span>
@@ -136,7 +144,7 @@
                                         <input type="number"
                                             class="form-control @error('phone') is-invalid @enderror" name="phone"
                                             value="{{ old('phone') }}" id="gender" placeholder="Phone Number">
-                                        <label for="phone">Phone Number</label>
+                                        <label for="phone">Phone Number<span class="text-danger">*</span></label>
                                     </div>
                                 </div>
                                 @if ($errors->has('phone'))
@@ -145,38 +153,6 @@
                                             class="text-danger small custom-error m-0">{{ $errors->first('phone') }}</span>
                                     </div>
                                 @endif
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg">
-                                <div class="form-floating mb-3">
-                                    <input type="password"
-                                        class="form-control @error('password') is-invalid @enderror" id="password"
-                                        name="password" placeholder="Password">
-                                    <label for="password">Password<span class="text-danger">*</span>
-                                        <button class="btn btn-light badge text-bg-primary pe-auto px-1"
-                                            type="button" data-bs-toggle="tooltip" data-bs-placement="right"
-                                            title="Must be atleast 8 characters long."><i
-                                                class="bi bi-info-circle"></i></button></label>
-                                    @if ($errors->has('password'))
-                                        <span
-                                            class="text-danger small custom-error m-0">{{ $errors->first('password') }}</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-lg">
-                                <div class="form-floating mb-3">
-                                    <input type="password"
-                                        class="form-control @error('password') is-invalid @enderror"
-                                        id="password_confirmation" name="password_confirmation"
-                                        placeholder="Confirm Password">
-                                    <label for="password_confirmation">Confirm Password<span
-                                            class="text-danger">*</span></label>
-                                    @if ($errors->has('password'))
-                                        <span
-                                            class="text-danger small custom-error m-0">{{ $errors->first('password') }}</span>
-                                    @endif
-                                </div>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -194,7 +170,26 @@
                             </div>
                         </div>
                         <div id="socialMediaLinks" class="mb-3"></div>
-                        <button type="submit" class="btn btn-light w-100">Register</button>
+                        <button type="submit" class="btn btn-light w-100 mb-2">Register</button>
+                        <div class="row">
+                            <div class="col-lg">
+                                <div class="card p-3 bg-warning-subtle">
+                                    <h5 class="card-title text-danger">Important Notes:</h5>
+                                    <div class="card-body">
+                                        <ul class="m-0" style="font-family: var(--button-font)">
+                                            <li>This <code>person</code> will also be available to be assigned as the
+                                                <code>Administrator</code>.
+                                            </li>
+                                            <li>There is no password as of this step for the user.</li>
+                                            <li>You or any other <code>Administrator</code> will be prompted to assign a
+                                                password to the user when trying to Promote the user to
+                                                <code>Administrator</code>.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -204,24 +199,7 @@
             </p>
         </div>
     </div>
-    @include('template.toast')
-
-    <!-- Back Button -->
-    <a class="nav-link m-lg-3 m-md-2 m-sm-2 px-3 py-2 fs-5 position-fixed" id="back-button"
-        href="{{ route('wizard') }}">
-        <i class="bi bi-arrow-left"></i>
-    </a>
-
-    <!-- Theme Toggle Button -->
-    <button class="nav-link px-3 py-2 position-fixed" id="theme-toggle" style="bottom: 20px; right: 20px;">
-        <i class="bi bi-brightness-high"></i>
-    </button>
-
-    <script src="{{ asset('js/script.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    @include('template.admin.layouts')
 </body>
-
 
 </html>

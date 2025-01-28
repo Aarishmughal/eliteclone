@@ -170,7 +170,9 @@ input[type="color"]:hover,
 .link-active {
     color: var(--primary-color) !important;
 }
-
+.custom-tooltip {
+    font-family: 'Inter' !important;
+}
 /* LOGIN PAGE STYLING */
 
 /* HOME PAGE STYLING */

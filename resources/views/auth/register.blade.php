@@ -84,26 +84,9 @@
                         <div class="row">
                             <div class="col-lg">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                        value="{{ old('username') }}" id="username" name="username"
-                                        placeholder="Username">
-                                    <label for="username">Username<span class="text-danger">*</span>
-                                        <button class="btn btn-light badge text-bg-primary pe-auto px-1" type="button"
-                                            data-bs-toggle="tooltip" data-bs-placement="right"
-                                            title="This Name will be used when managing the website as an Admin."><i
-                                                class="bi bi-info-circle"></i></button>
-                                    </label>
-                                    @if ($errors->has('username'))
-                                        <span
-                                            class="text-danger small custom-error m-0">{{ $errors->first('username') }}</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-lg">
-                                <div class="form-floating mb-3">
                                     <input type="email" class="form-control @error('email') is-invalid @enderror"
                                         value="{{ old('email') }}" id="email" name="email"
-                                        placeholder="name@example.com">
+                                        placeholder="Email Address">
                                     <label for="email">Email address<span class="text-danger">*</span></label>
                                     @if ($errors->has('email'))
                                         <span
@@ -123,7 +106,7 @@
                                         <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female
                                         </option>
                                     </select>
-                                    <label for="gender">Gender</label>
+                                    <label for="gender">Gender<span class="text-danger">*</span></label>
                                     @if ($errors->has('gender'))
                                         <span
                                             class="text-danger small custom-error m-0">{{ $errors->first('gender') }}</span>
@@ -134,10 +117,10 @@
                                 <div class="input-group">
                                     <span class="input-group-text" style="font-family: 'Inter">+92</span>
                                     <div class="form-floating flex-grow-1">
-                                        <input type="number"
-                                            class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                            value="{{ old('phone') }}" id="gender" placeholder="Phone Number">
-                                        <label for="phone">Phone Number</label>
+                                        <input type="number" class="form-control @error('phone') is-invalid @enderror"
+                                            name="phone" value="{{ old('phone') }}" id="gender"
+                                            placeholder="Phone Number">
+                                        <label for="phone">Phone Number<span class="text-danger">*</span></label>
                                     </div>
                                 </div>
                                 @if ($errors->has('phone'))
@@ -151,12 +134,12 @@
                         <div class="row">
                             <div class="col-lg">
                                 <div class="form-floating mb-3">
-                                    <input type="password"
-                                        class="form-control @error('password') is-invalid @enderror" id="password"
-                                        name="password" placeholder="Password">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        id="password" name="password" placeholder="Password">
                                     <label for="password">Password<span class="text-danger">*</span>
                                         <button class="btn btn-light badge text-bg-primary pe-auto px-1"
                                             type="button" data-bs-toggle="tooltip" data-bs-placement="right"
+                                            data-bs-custom-class="custom-tooltip"
                                             title="Must be atleast 8 characters long."><i
                                                 class="bi bi-info-circle"></i></button></label>
                                     @if ($errors->has('password'))
