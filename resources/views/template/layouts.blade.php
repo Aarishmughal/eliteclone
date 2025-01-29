@@ -85,7 +85,8 @@
                                     <li><a class="dropdown-item" href="{{ Route('wizard') }}"><i
                                                 class="bi bi-plus-circle me-1"></i>Add
                                             Content</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-code-slash me-1"></i>Site
+                                    <li><a class="dropdown-item" href="{{ Route('content') }}"><i
+                                                class="bi bi-code-slash me-1"></i>Site
                                             Content</a></li>
                                     <li><a class="dropdown-item bg-danger-subtle" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

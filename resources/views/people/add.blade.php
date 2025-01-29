@@ -53,7 +53,7 @@
                                     <label for="image" class="form-label mb-1">Person Image<button
                                             class="btn pe-auto p-0 ms-1 pb-1" type="button" data-bs-toggle="tooltip"
                                             data-bs-custom-class="custom-tooltip" data-bs-placement="right"
-                                            title="Less than 5MBs in Size"><i
+                                            title="Recommended Size: 100x100 pixels & less than 5MBs."><i
                                                 class="bi bi-info-circle"></i></button></label>
                                     <input type="file"
                                         class="form-control form-control-lg @error('image') is-invalid @enderror"

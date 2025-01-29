@@ -119,8 +119,4 @@ class AuthController extends BaseController
         $request->session()->regenerateToken();
         return redirect()->route("home")->withSuccess("You have successfully logged out!");
     }
-    public function viewWizard()
-    {
-        return view('pages.wizard');
-    }
 }

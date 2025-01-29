@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class PeopleController extends Controller
 {
+    public function index()
+    {
+        $users = User::all();
+        $socialLinks = SocialMediaLink::all();
+        return view("people.index", compact("users", "socialLinks"));
+    }
     public function viewAdd()
     {
         return view("people.add");
