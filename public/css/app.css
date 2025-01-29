@@ -23,7 +23,10 @@ h6 {
     color: var(--primary-color) !important;
     font-family: var(--heading-font) !important;
 }
-
+th {
+    font-family: var(--button-font) !important;
+}
+td,
 a,
 p {
     color: var(--text-color) !important;
@@ -171,7 +174,7 @@ input[type="color"]:hover,
     color: var(--primary-color) !important;
 }
 .custom-tooltip {
-    font-family: 'Inter' !important;
+    font-family: "Inter" !important;
 }
 /* LOGIN PAGE STYLING */
 
@@ -202,8 +205,9 @@ input[type="color"]:hover,
 
 /* PEOPLE PAGE STYLING */
 .custom-person-card {
+    height: 335px !important;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease !important;
 }
 .custom-person-card:hover {
     box-shadow: 0 4px 20px var(--primary-color) !important;

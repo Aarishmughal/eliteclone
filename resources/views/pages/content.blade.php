@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>Add Content Wizard | AUMC Research Group</title>
+    <title>Manage Content Wizard | AUMC Research Group</title>
     <style>
         body {
             margin: 0;
@@ -44,52 +44,54 @@
         <div class="col-lg-6 col-sm-10">
             <div class="card shadow-lg p-3">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">Select Content to Add</h3>
+                    <h3 class="card-title mb-4">Select Content to Manage</h3>
                     <div class="row mb-3">
                         <div class="col-lg">
-                            <a href="{{ Route('people.viewAdd') }}" class="btn btn-light-outline btn-lg w-100 text-start"><i
-                                    class="bi bi-person me-2"></i>Add People</a>
+                            <a href="{{ Route('people.index') }}"
+                                class="btn btn-light-outline btn-lg w-100 text-start"><i
+                                    class="bi bi-person me-2"></i>Manage People</a>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg">
                             <a href="#" class="btn btn-light-outline btn-lg w-100 text-start"><i
-                                    class="bi bi-kanban me-2"></i>Add Project</a>
+                                    class="bi bi-kanban me-2"></i>Manage Project</a>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg">
                             <a href="#" class="btn btn-light-outline btn-lg w-100 text-start"><i
-                                    class="bi bi-people me-2"></i>Add Publication</a>
+                                    class="bi bi-people me-2"></i>Manage Publication</a>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg">
                             <a href="#" class="btn btn-light-outline btn-lg w-100 text-start"><i
-                                    class="bi bi-file-bar-graph me-2"></i>Add Research Papers</a>
+                                    class="bi bi-file-bar-graph me-2"></i>Manage Research Papers</a>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg">
                             <a href="#" class="btn btn-light-outline btn-lg w-100 text-start"><i
-                                    class="bi bi-pencil-square me-2"></i>Add Teaching Material</a>
+                                    class="bi bi-pencil-square me-2"></i>Manage Teaching Material</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg">
                             <a href="#" class="btn btn-light-outline btn-lg w-100 text-start"><i
-                                    class="bi bi-file-earmark-medical me-2"></i>Add Thesis</a>
+                                    class="bi bi-file-earmark-medical me-2"></i>Manage Thesis</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <p class="text-body-secondary mt-3">
-                &copy; {{ __(now()->year) }} AUMC, Inc
+                &copy; {{ __(now()->year) }} Innovative Consultancy Hub, Inc
             </p>
         </div>
     </div>
     @include('template.admin.layouts')
 </body>
+
 
 </html>

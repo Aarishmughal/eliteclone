@@ -2,24 +2,16 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
-Route::get('/', function () {
-    return view('pages.home');
-})->name("home");
-
-Route::get('/news', function () {
-    return view('pages.news');
-})->name("news");
-
-Route::get('/people', function () {
-    return view('pages.people');
-})->name("people");
-
-Route::get('/research', function () {
-    return view('pages.research');
-})->name("research");
+Route::controller(SiteController::class)->group(function () {
+    Route::get('/', 'index')->name("home");
+    Route::get('/news', 'news')->name("news");
+    Route::get('/people', 'people')->name("people");
+    Route::get('/research', 'research')->name("research");
+});
 
 // Guest Only Routes
 Route::middleware('guest')->group(function () {
@@ -35,12 +27,18 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth', 'admin')->group(function () {
     // General Routes
     Route::controller(AuthController::class)->group(function () {
-        Route::get('/admin/wizard', 'viewWizard')->name("wizard");
         Route::post('logout', 'logout')->name("logout");
     });
+    Route::controller(SiteController::class)->group(function () {
+        Route::get('/admin/wizard', 'viewWizard')->name("wizard");
+        Route::get('/admin/content', 'viewContent')->name("content");
+    });
+
     // Controller Routes: People
     Route::controller(PeopleController::class)->group(function () {
+        Route::get('admin/people', 'index')->name("people.index");
         Route::get('admin/people/add', 'viewAdd')->name("people.viewAdd");
         Route::post('admin/people/add', 'add')->name("people.add");
+        Route::get('admin/people/edit/{id}', 'viewEdit')->name("people.viewEdit");
     });
 });
