@@ -40,5 +40,7 @@ Route::middleware('auth', 'admin')->group(function () {
         Route::get('admin/people/add', 'viewAdd')->name("people.viewAdd");
         Route::post('admin/people/add', 'add')->name("people.add");
         Route::get('admin/people/edit/{id}', 'viewEdit')->name("people.viewEdit");
+        Route::post('admin/people/edit/{id}', 'edit')->name("people.edit");
+        Route::post('admin/people/delete/{id}', 'delete')->name("people.delete");
     });
 });

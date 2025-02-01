@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow-sm mb-2">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow-sm">
         <div class="container-fluid">
             <!-- Brand Section -->
             <a class="navbar-brand d-flex align-items-center" href="{{ Route('home') }}">

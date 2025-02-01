@@ -13,6 +13,7 @@ class PeopleController extends Controller
     public function index()
     {
         $users = User::all();
+        $users = $users->sortByDesc('is_admin');
         $socialLinks = SocialMediaLink::all();
         return view("people.index", compact("users", "socialLinks"));
     }
@@ -82,5 +83,43 @@ class PeopleController extends Controller
         } else {
             return back()->with('error', 'Failed to Add Person.');
         }
+    }
+    public function viewEdit($id)
+    {
+        $user = User::find($id);
+        $socialLinks = SocialMediaLink::where('user_id', $id)->get();
+        return view("people.edit", compact("user", "socialLinks"));
+    }
+    public function edit(Request $request, $id)
+    {
+        $user = User::find($id);
+        $request->validate([
+            "image" => "nullable|image|mimes:png,jpg,jpeg,webp,svg|max:5120",
+            'fname' => 'required|string|max:255',
+            'mname' => 'required|string|max:255',
+            'lname' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id . '|max:255',
+            'gender' => 'required|in:male,female',
+            'phone' => 'required|numeric|digits_between:10,15',
+        ]);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $user->image = $imagePath;
+        }
+        $user->fname = $request->fname;
+        $user->mname = $request->mname;
+        $user->lname = $request->lname;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->phone = "+92" . (substr($request->phone, 0, 1) == "0" ? substr($request->phone, 1) : $request->phone);
+        $user->bio = $request->bio;
+        $user->save();
+        return redirect()->route('people.index')->with('success', 'Person updated successfully.');
+    }
+    public function delete($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('people.index')->with('success', 'Person deleted successfully.');
     }
 }
