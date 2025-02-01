@@ -19,6 +19,7 @@ class SiteController extends Controller
     public function people()
     {
         $users = User::all();
+        $users = $users->sortByDesc('is_admin');
         $socialLinks = SocialMediaLink::all();
         return view('pages.people', compact("users", "socialLinks"));
     }

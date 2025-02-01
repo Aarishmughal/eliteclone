@@ -1,8 +1,8 @@
 @include('template.toast')
 
 <!-- Back Button -->
-<a class="nav-link m-lg-3 m-md-2 m-sm-2 px-3 py-2 fs-5 position-fixed" id="back-button" href="{{ route('home') }}"
-    data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Go Back to Home"
+<a class="nav-link m-lg-3 m-md-2 m-sm-2 px-3 py-2 fs-5 position-fixed" disabled id="back-button"
+    data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="DISABLED FOR NOW"
     data-bs-custom-class="custom-tooltip">
     <i class="bi bi-arrow-left"></i>
 </a>
