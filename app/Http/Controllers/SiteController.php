@@ -23,9 +23,25 @@ class SiteController extends Controller
         $socialLinks = SocialMediaLink::all();
         return view('pages.people', compact("users", "socialLinks"));
     }
-    public function research()
+    public function projects()
     {
-        return view('pages.research');
+        return view('pages.research.projects');
+    }
+    public function publications()
+    {
+        return view('pages.research.publications');
+    }
+    public function topics()
+    {
+        return view('pages.research.topics');
+    }
+    public function teaching()
+    {
+        return view('pages.teaching.teaching_home');
+    }
+    public function abc()
+    {
+        return view('pages.teaching.course');
     }
     public function viewWizard()
     {

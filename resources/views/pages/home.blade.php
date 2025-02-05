@@ -1,7 +1,7 @@
 @extends('template.layouts')
 @section('title', 'Home | AUMC Research Group')
 @section('content')
-    <div class="container d-flex align-items-center justify-content-center " style="height: 75vh">
+    <div class="container d-flex align-items-center justify-content-center" style="height: 75vh">
         <div class="card p-4 shadow-lg" id="hero-card">
             <div class="row">
                 <div class="col-lg-7">
@@ -18,13 +18,13 @@
                         <div class="card-body">
                             <ul class="list-group">
                                 <li class="list-group-item border-info-subtle list-group-item-action list-group-item-info">
-                                    <a href="#">News <i class="bi bi-arrow-right"></i></a>
+                                    <a href="{{ route('news') }}">News <i class="bi bi-arrow-right"></i></a>
                                 </li>
                                 <li class="list-group-item border-info-subtle list-group-item-action list-group-item-info">
-                                    <a href="#">People <i class="bi bi-arrow-right"></i></a>
+                                    <a href="{{ route('people') }}">People <i class="bi bi-arrow-right"></i></a>
                                 </li>
                                 <li class="list-group-item border-info-subtle list-group-item-action list-group-item-info">
-                                    <a href="#">Research <i class="bi bi-arrow-right"></i></a>
+                                    <a href="{{ route('topics') }}">Research <i class="bi bi-arrow-right"></i></a>
                                 </li>
                                 <li class="list-group-item border-info-subtle list-group-item-action list-group-item-info">
                                     <a href="#">Teaching <i class="bi bi-arrow-right"></i></a>
@@ -51,7 +51,7 @@
                         </a>
                         <p class="card-text flex-grow-1">Our publications are available through PORTO@Iris, the open
                             repository of publications produced by the scientific community of Politecnico di Torino.</p>
-                        <a href="#" class="btn btn-light mt-auto">Read More <i class="bi bi-arrow-right"></i></a>
+                        <a href="{{ route('publications') }}" class="btn btn-light mt-auto">Read More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                         <p class="card-text flex-grow-1">We actively collaborate with international associations, non-profit
                             and public institutions, as well as industrial partners. Have a look at our current and past
                             collaborations!</p>
-                        <a href="#" class="btn btn-light mt-auto">Read More <i class="bi bi-arrow-right"></i></a>
+                        <a href="{{ route('projects') }}" class="btn btn-light mt-auto">Read More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                         </a>
                         <p class="card-text flex-grow-1">Discover our research topics and our commitment to the Open Source
                             community, through the software tools we create. Check out our research!</p>
-                        <a href="#" class="btn btn-light mt-auto">Read More <i class="bi bi-arrow-right"></i></a>
+                        <a href="{{ route('topics') }}" class="btn btn-light mt-auto">Read More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
