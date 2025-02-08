@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,5 +47,15 @@ Route::middleware('auth', 'admin')->group(function () {
         Route::get('admin/people/edit/{id}', 'viewEdit')->name("people.viewEdit");
         Route::post('admin/people/edit/{id}', 'edit')->name("people.edit");
         Route::post('admin/people/delete/{id}', 'delete')->name("people.delete");
+    });
+
+    // Controller Routes: Project
+    Route::controller(ProjectController::class)->group(function () {
+        Route::get('admin/projects', 'index')->name("projects.index");
+        Route::get('admin/projects/add', 'viewAdd')->name("projects.viewAdd");
+        Route::post('admin/projects/add', 'add')->name("projects.add");
+        Route::get('admin/projects/edit/{id}', 'viewEdit')->name("projects.viewEdit");
+        Route::post('admin/projects/edit/{id}', 'edit')->name("projects.edit");
+        Route::post('admin/projects/delete/{id}', 'delete')->name("projects.delete");
     });
 });
