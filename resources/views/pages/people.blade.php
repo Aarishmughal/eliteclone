@@ -35,7 +35,7 @@
                             <div class="d-flex justify-content-end">
                                 @foreach ($socialLinks as $socialLink)
                                     @if ($socialLink->user_id == $user->id)
-                                        <a href="{{ $socialLink->account_link }}" class="fs-3">
+                                        <a href="{{ $socialLink->account_link }}" class="fs-3 px-1">
                                             <i class="bi bi-{{ strtolower($socialLink->platform_name) }}"></i>
                                         </a>
                                     @endif

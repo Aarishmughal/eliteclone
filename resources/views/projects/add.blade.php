@@ -298,111 +298,108 @@
 
             if (partnerCount <= maxPartners) {
                 const div = document.createElement("div");
-                div.className = "border p-3 mb-3 rounded bg-light";
-
+                div.className = "border p-3 mb-3 rounded";
+                div.id = `partner${partnerCount}`;
                 div.innerHTML = `
             <div class="row">
-    <div class="col-lg-6 col-md-12">
-        <div class="form-floating mb-3">
-            <input
-                type="text"
-                id="partnerName${partnerCount}"
-                name="partners[${partnerCount}][name]"
-                placeholder="Partner Name"
-                class="form-control"
-            />
-            <label for="partnerName${partnerCount}">Partner Name</label>
-        </div>
-    </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-floating mb-3">
+                        <input
+                            type="text"
+                            id="partnerName${partnerCount}"
+                            name="partners[${partnerCount}][name]"
+                            placeholder="Partner Name"
+                            class="form-control"
+                        />
+                        <label for="partnerName${partnerCount}">Partner Name</label>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-floating mb-3">
+                        <input
+                            type="url"
+                            id="partnerWebsite${partnerCount}"
+                            name="partners[${partnerCount}][website]"
+                            placeholder="Website (optional)"
+                            class="form-control"
+                        />
+                        <label for="partnerWebsite${partnerCount}"
+                            >Website (Optional)</label
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-floating mb-3">
+                        <select
+                            class="form-select"
+                            id="partnerCountry${partnerCount}"
+                            name="partners[${partnerCount}][country]"
+                            onchange="updateCountryCode(${partnerCount})"
+                        >
+                            <option value="" disabled selected>Select Country</option>
+                            <option value="United States" data-code="US">
+                                United States - US
+                            </option>
+                            <option value="United Kingdom" data-code="GB">
+                                United Kingdom - GB
+                            </option>
+                            <option value="Canada" data-code="CA">Canada - CA</option>
+                            <option value="Germany" data-code="DE">Germany - DE</option>
+                            <option value="France" data-code="FR">France - FR</option>
+                            <option value="India" data-code="IN">India - IN</option>
+                            <option value="Pakistan" data-code="PK">Pakistan - PK</option>
+                            <option value="Australia" data-code="AU">Australia - AU</option>
+                            <option value="China" data-code="CN">China - CN</option>
+                            <option value="Japan" data-code="JP">Japan - JP</option>
+                        </select>
+                        <label for="partnerCountry${partnerCount}">Country</label>
+                        <input
+                            type="hidden"
+                            id="partnerCountryCode${partnerCount}"
+                            name="partners[${partnerCount}][country_code]"
+                        />
+                    </div>
+                </div>
 
-    <div class="col-lg-6 col-md-12">
-        <div class="form-floating mb-3">
-            <input
-                type="url"
-                id="partnerWebsite${partnerCount}"
-                name="partners[${partnerCount}][website]"
-                placeholder="Website (optional)"
-                class="form-control"
-            />
-            <label for="partnerWebsite${partnerCount}"
-                >Website (Optional)</label
-            >
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-6 col-md-12">
-        <div class="form-floating mb-3">
-            <select
-                class="form-select"
-                id="partnerCountry${partnerCount}"
-                name="partners[${partnerCount}][country]"
-                onchange="updateCountryCode(${partnerCount})"
-            >
-                <option value="" disabled selected>Select Country</option>
-                <option value="United States" data-code="US">
-                    United States - US
-                </option>
-                <option value="United Kingdom" data-code="GB">
-                    United Kingdom - GB
-                </option>
-                <option value="Canada" data-code="CA">Canada - CA</option>
-                <option value="Germany" data-code="DE">Germany - DE</option>
-                <option value="France" data-code="FR">France - FR</option>
-                <option value="India" data-code="IN">India - IN</option>
-                <option value="Pakistan" data-code="PK">Pakistan - PK</option>
-                <option value="Australia" data-code="AU">Australia - AU</option>
-                <option value="China" data-code="CN">China - CN</option>
-                <option value="Japan" data-code="JP">Japan - JP</option>
-            </select>
-            <label for="partnerCountry${partnerCount}">Country</label>
-            <input
-                type="hidden"
-                id="partnerCountryCode${partnerCount}"
-                name="partners[${partnerCount}][country_code]"
-            />
-        </div>
-    </div>
-
-    <div class="col-lg-6 col-md-12">
-        <div class="form-floating mb-3">
-            <input
-                type="text"
-                id="partnerType${partnerCount}"
-                name="partners[${partnerCount}][type]"
-                placeholder="Type"
-                class="form-control"
-            />
-            <label for="partnerType${partnerCount}">Type</label>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-6 col-sm-12">
-        <div class="form-check mb-2">
-            <input
-                class="form-check-input"
-                type="checkbox"
-                id="partnerAssociated${partnerCount}"
-                name="partners[${partnerCount}][is_associated]"
-                value="1"
-            />
-            <label
-                class="form-check-label"
-                for="partnerAssociated${partnerCount}"
-                >Is Associated?</label
-            >
-        </div>
-    </div>
-    <div class="col-lg-6 col-sm-12 text-end">
-    <button
-        class="btn btn-danger"
-        onclick="removePartnerRow(this)">
-        <i class="bi bi-trash-fill"></i>
-    </button>
-</div>
-</div>
-
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-floating mb-3">
+                        <input
+                            type="text"
+                            id="partnerType${partnerCount}"
+                            name="partners[${partnerCount}][type]"
+                            placeholder="Type"
+                            class="form-control"
+                        />
+                        <label for="partnerType${partnerCount}">Type</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="form-check mb-2">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="partnerAssociated${partnerCount}"
+                            name="partners[${partnerCount}][is_associated]"
+                            value="1"
+                        />
+                        <label
+                            class="form-check-label"
+                            for="partnerAssociated${partnerCount}"
+                            >Is Associated?</label
+                        >
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 text-end">
+                <button
+                    class="btn btn-danger"
+                    onclick="removePartnerRow(this)">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </div>
         `;
 
                 document.getElementById("partnersSection").appendChild(div);
@@ -421,8 +418,8 @@
         }
 
         function removePartnerRow(button) {
-            const row = button.closest(".row");
-            document.getElementById("partnersSection").removeChild(row);
+            const partnerId = button.closest(".border").id;
+            document.getElementById(partnerId).remove();
             partnerCount--;
         }
     </script>
