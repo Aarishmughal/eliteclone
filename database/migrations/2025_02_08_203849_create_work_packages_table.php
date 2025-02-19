@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('work_packages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
-            $table->integer('number');
             $table->string('name');
             $table->timestamps();
         });
