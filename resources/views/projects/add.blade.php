@@ -146,7 +146,11 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-lg">
-                                <p class="mb-1">Project Description</p>
+                                <p class="mb-1">Project Description<button
+                                    class="btn pe-auto p-0 ms-1 pb-1" type="button" data-bs-toggle="tooltip"
+                                    data-bs-custom-class="custom-tooltip" data-bs-placement="right"
+                                    title="If text is not visible in the text box, try changing the site theme to Light."><i
+                                        class="bi bi-info-circle"></i></button></p>
                                 <div id="editor">
                                 </div>
                                 <!-- Hidden input to store Quill content -->
