@@ -12,6 +12,7 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/news', 'news')->name("news");
     Route::get('/people', 'people')->name("people");
     Route::get('/research/projects', 'projects')->name("projects");
+    Route::get('/research/projects/{}', 'projectFetch')->name("projects.fetch");
     Route::get('/research/publications', 'publications')->name("publications");
     Route::get('/research/topics', 'topics')->name("topics");
     Route::get('/teaching', 'teaching')->name("teaching");
