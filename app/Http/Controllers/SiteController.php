@@ -28,15 +28,17 @@ class SiteController extends Controller
     }
     public function projects()
     {
-        // $ongoingProjects = Project::where(function ($query) {
-        //     $query->whereNull('end_date')
-        //         ->orWhere('end_date', '')
-        //         ->orWhere('end_date', '>', Carbon::today()->toDateString());
-        // })->get();
         $projects = Project::all();
         $workPackages = WorkPackage::all();
         $partners = Partner::all();
         return view('pages.research.projects', compact("projects", "workPackages", "partners"));
+    }
+    public function projectFetch($id)
+    {
+        $project = Project::find($id);
+        $workPackages = WorkPackage::where('project_id', $id)->get();
+        $partners = Partner::where('project_id', $id)->get();
+        return view('pages.research.projectFetch', compact("project", "workPackages", "partners"));
     }
     public function publications()
     {

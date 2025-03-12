@@ -19,7 +19,7 @@
             /* Adjust based on line-height and desired truncation */
             overflow: hidden;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 6;
             -webkit-box-orient: vertical;
             text-overflow: ellipsis;
             word-break: break-word;
@@ -39,14 +39,13 @@
                     Projects</button>
             </li>
         </ul>
-
         <div class="tab-content">
             <!-- Ongoing Projects Tab -->
             <div class="tab-pane fade show active" id="ongoing-pane" role="tabpanel" aria-labelledby="ongoing"
                 tabindex="0">
                 @foreach ($projects as $project)
                     @if (empty($project->end_date) || $project->end_date >= now()->format('Y-m-d'))
-                        <div class="card my-3 custom-person-card">
+                        <div class="card my-4 custom-person-card">
                             <div class="card-title p-3 d-flex align-items-center">
                                 <h4 class="me-3">{{ $project->title }}</h4>
                                 <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('images/logo.png') }}"
@@ -57,7 +56,8 @@
                             </div>
                             <div class="card-footer d-flex align-items-center">
                                 <small class="text-muted me-auto">{{ $project->start_date }} -
-                                    {{ $project->end_date ?? 'Ongoing' }} <em>Expected</em></small>
+                                    {!! $project->end_date ? $project->end_date . ' <em>Expected</em>' : 'Ongoing' !!}
+                                </small>
                                 <a href="{{ Route('projects.fetch', ['id' => $project->id]) }}" class="btn btn-primary">Read
                                     More</a>
                             </div>
@@ -70,7 +70,7 @@
             <div class="tab-pane fade" id="completed-pane" role="tabpanel" aria-labelledby="completed" tabindex="0">
                 @foreach ($projects as $project)
                     @if (!empty($project->end_date) && $project->end_date < now()->format('Y-m-d'))
-                        <div class="card my-3 custom-person-card">
+                        <div class="card my-4 custom-person-card">
                             <div class="card-title p-3 d-flex align-items-center">
                                 <h4 class="me-3">{{ $project->title }}</h4>
                                 <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('images/logo.png') }}"
@@ -82,8 +82,7 @@
                             <div class="card-footer d-flex align-items-center">
                                 <small class="text-muted me-auto">{{ $project->start_date }} -
                                     {{ $project->end_date }}</small>
-                                <a href="{{ Route('projects.fetch', ['id' => $project->id]) }}"
-                                    class="btn btn-primary">Read
+                                <a href="{{ Route('projects.fetch', ['id' => $project->id]) }}" class="btn btn-primary">Read
                                     More</a>
                             </div>
                         </div>

@@ -70,11 +70,14 @@ class ProjectController extends Controller
             ]);
             if ($validatedData) {
                 $workPackages = $validatedData['workPackages'];
+                $index = 1;
                 foreach ($workPackages as $workPackage) {
                     WorkPackage::create([
                         'project_id' => $project->id,
                         'name' => $workPackage['name'],
+                        'number' => $index,
                     ]);
+                    $index++;
                 }
                 $partners = $validatedData['partners'];
                 foreach ($partners as $partner) {
