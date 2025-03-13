@@ -41,6 +41,7 @@ th {
 }
 td,
 a,
+li,
 p {
     color: var(--text-color) !important;
     font-family: var(--body-font) !important;

@@ -75,7 +75,7 @@ class ProjectController extends Controller
                     WorkPackage::create([
                         'project_id' => $project->id,
                         'name' => $workPackage['name'],
-                        'number' => $index,
+                        // 'number' => $index,
                     ]);
                     $index++;
                 }

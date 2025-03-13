@@ -58,8 +58,8 @@
                                 <small class="text-muted me-auto">{{ $project->start_date }} -
                                     {!! $project->end_date ? $project->end_date . ' <em>Expected</em>' : 'Ongoing' !!}
                                 </small>
-                                <a href="{{ Route('projects.fetch', ['id' => $project->id]) }}" class="btn btn-primary">Read
-                                    More</a>
+                                <a href="{{ Route('projects.fetch', ['id' => $project->id]) }}" class="btn btn-primary text-light">Read
+                                    More <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     @endif
@@ -82,8 +82,8 @@
                             <div class="card-footer d-flex align-items-center">
                                 <small class="text-muted me-auto">{{ $project->start_date }} -
                                     {{ $project->end_date }}</small>
-                                <a href="{{ Route('projects.fetch', ['id' => $project->id]) }}" class="btn btn-primary">Read
-                                    More</a>
+                                <a href="{{ Route('projects.fetch', ['id' => $project->id]) }}" class="btn btn-primary text-light">Read
+                                    More <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     @endif
