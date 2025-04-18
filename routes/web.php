@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,5 +59,15 @@ Route::middleware('auth', 'admin')->group(function () {
         Route::get('admin/projects/edit/{id}', 'viewEdit')->name("projects.viewEdit");
         Route::post('admin/projects/edit/{id}', 'edit')->name("projects.edit");
         Route::post('admin/projects/delete/{id}', 'delete')->name("projects.delete");
+    });
+
+    // Controller Routes: Project
+    Route::controller(PublicationController::class)->group(function () {
+        Route::get('admin/publications', 'index')->name("publications.index");
+        Route::get('admin/publications/add', 'viewAdd')->name("publications.viewAdd");
+        Route::post('admin/publications/add', 'add')->name("publications.add");
+        Route::get('admin/publications/edit/{id}', 'viewEdit')->name("publications.viewEdit");
+        Route::post('admin/publications/edit/{id}', 'edit')->name("publications.edit");
+        Route::post('admin/publications/delete/{id}', 'delete')->name("publications.delete");
     });
 });

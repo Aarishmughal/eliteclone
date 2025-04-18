@@ -47,19 +47,22 @@
                     <h3 class="card-title mb-4">Select Content to Add</h3>
                     <div class="row mb-3">
                         <div class="col-lg">
-                            <a href="{{ Route('people.viewAdd') }}" class="btn btn-light-outline btn-lg w-100 text-start"><i
+                            <a href="{{ Route('people.viewAdd') }}"
+                                class="btn btn-light-outline btn-lg w-100 text-start"><i
                                     class="bi bi-person me-2"></i>Add People</a>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg">
-                            <a href="{{ Route('projects.viewAdd') }}" class="btn btn-light-outline btn-lg w-100 text-start"><i
+                            <a href="{{ Route('projects.viewAdd') }}"
+                                class="btn btn-light-outline btn-lg w-100 text-start"><i
                                     class="bi bi-kanban me-2"></i>Add Project</a>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg">
-                            <a href="#" class="btn btn-light-outline btn-lg w-100 text-start"><i
+                            <a href="{{ Route('publications.viewAdd') }}"
+                                class="btn btn-light-outline btn-lg w-100 text-start"><i
                                     class="bi bi-people me-2"></i>Add Publication</a>
                         </div>
                     </div>
