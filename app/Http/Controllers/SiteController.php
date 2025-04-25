@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Partner;
 use App\Models\Project;
+use App\Models\Publication;
 use App\Models\SocialMediaLink;
 use App\Models\User;
 use App\Models\WorkPackage;
@@ -42,7 +43,10 @@ class SiteController extends Controller
     }
     public function publications()
     {
-        return view('pages.research.publications');
+        $publications = Publication::all();
+        $publicationsByYear = $publications->sortByDesc('year');
+        $publicationsByType = $publications->sortByDesc('type');
+        return view('pages.research.publications', compact("publicationsByYear", "publicationsByType"));
     }
     public function topics()
     {

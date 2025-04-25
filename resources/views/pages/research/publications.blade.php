@@ -1,5 +1,5 @@
 @extends('template.layouts')
-@section('title', 'Publications | e-lite Research Group')
+@section('title', 'Publications | AUMC Research Group')
 @section('content')
     <style>
         .nav-link {
@@ -27,6 +27,9 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="byYear-pane" role="tabpanel" aria-labelledby="byYear" tabindex="0">
+                @foreach ($publicationsByYear as $publicationByYear)
+                    
+                @endforeach
                 <div class="mt-3">
                     <h5 class="fw-bold border-bottom">Year 2023</h5>
                     <ul class="text-body" style="font-family: 'Inter'">

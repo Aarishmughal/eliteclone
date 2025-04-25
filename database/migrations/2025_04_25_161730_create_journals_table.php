@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('publications', function (Blueprint $table) {
+        Schema::create('journals', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('type');
-            $table->date('year');
-            $table->string('doi');
-            $table->string('iris');
+            $table->foreignId('publication_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('edition');
+            $table->string('volume');
+            $table->integer('page_number');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('publications');
+        Schema::dropIfExists('journals');
     }
 };

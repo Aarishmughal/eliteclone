@@ -2,23 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
+use App\Models\Journal;
+use App\Models\Publication;
 use Illuminate\Http\Request;
 
 class PublicationController extends Controller
 {
+    public function index()
+    {
+        return view('publications.index');
+    }
     public function viewAdd()
     {
         return view('publications.add');
     }
     public function add(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'year' => 'required|date|max:255',
             'doi' => 'required|url|max:255',
             'iris' => 'required|url|max:255',
-            'author' => 'required|array|max:5|min:1',
+            'authors' => 'required|array|max:5|min:1',
             'journal.*' => 'required|string|max:255',
         ], [
             'title.required' => 'Publication Title is required.',
@@ -30,18 +37,44 @@ class PublicationController extends Controller
             'author.min' => 'Atleast 1 Author is required.',
             'journal.*.required' => 'This Journal Information is required.',
         ]);
-        // $project = Project::create([
-        //     'image' => $validatedData['image'] ?? null,
-        //     'title' => $request->title,
-        //     'website' => $request->website,
-        //     'card' => $request->card,
-        //     'start_date' => $request->start_date,
-        //     'end_date' => $request->end_date,
-        //     'description' => $request->project_description,
-        //     'reference_number' => $request->reference_number,
-        //     'grant_currency' => $request->grant_currency,
-        //     'grant_amount' => $request->grant_amount,
-        // ]);
-        dd($request->all());
+        if ($validatedData) {
+            $publication = Publication::create([
+                'title' => $request->title,
+                'type' => $request->type,
+                'year' => $request->year,
+                'doi' => $request->doi,
+                'iris' => $request->iris,
+            ]);
+            if ($publication) {
+                foreach ($request->authors as $author) {
+                    $author = Author::create([
+                        'first_name' => $author['fname'],
+                        'middle_name' => $author['mname'],
+                        'last_name' => $author['lname'],
+                        'publication_id' => $publication->id,
+                    ]);
+                }
+                if ($author) {
+                    $journal = Journal::create([
+                        'name' => $request->journal['name'],
+                        'edition' => $request->journal['edition'],
+                        'volume' => $request->journal['volume'],
+                        'page_number' => $request->journal['page'],
+                        'publication_id' => $publication->id,
+                    ]);
+                    if ($journal) {
+                        return redirect()->route('home')->with('success', 'Publication added successfully.');
+                    } else {
+                        return redirect()->back()->with('error', 'Failed to add journal information.');
+                    }
+                } else {
+                    return redirect()->back()->with('error', 'Failed to add author.');
+                }
+            } else {
+                return redirect()->back()->with('error', 'Failed to add publication.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Failed to add publication.');
+        }
     }
 }
