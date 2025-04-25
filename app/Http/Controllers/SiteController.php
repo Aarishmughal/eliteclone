@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
+use App\Models\Journal;
 use App\Models\Partner;
 use App\Models\Project;
 use App\Models\Publication;
@@ -9,6 +11,7 @@ use App\Models\SocialMediaLink;
 use App\Models\User;
 use App\Models\WorkPackage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class SiteController extends Controller
 {
@@ -44,9 +47,13 @@ class SiteController extends Controller
     public function publications()
     {
         $publications = Publication::all();
-        $publicationsByYear = $publications->sortByDesc('year');
-        $publicationsByType = $publications->sortByDesc('type');
-        return view('pages.research.publications', compact("publicationsByYear", "publicationsByType"));
+        $authors = Author::all();
+        $journals = Journal::all();
+        $publicationsByYear = $publications->sortByDesc('year')->groupBy(function ($publication) {
+            return Carbon::parse($publication->year)->format('Y');
+        });;
+        $publicationsByType = $publications->sortByDesc('type')->groupBy('type');;
+        return view('pages.research.publications', compact("publicationsByYear", "publicationsByType", "authors", "journals"));
     }
     public function topics()
     {

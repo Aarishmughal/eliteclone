@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Journal;
 use App\Models\Publication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class PublicationController extends Controller
 {
@@ -41,7 +42,7 @@ class PublicationController extends Controller
             $publication = Publication::create([
                 'title' => $request->title,
                 'type' => $request->type,
-                'year' => $request->year,
+                'year' => Carbon::parse($request->year)->format('Y'),
                 'doi' => $request->doi,
                 'iris' => $request->iris,
             ]);

@@ -46,6 +46,9 @@ p {
     color: var(--text-color) !important;
     font-family: var(--body-font) !important;
 }
+.alert {
+    font-family: var(--body-font);
+}
 .btn-light {
     background-color: var(--primary-color) !important;
     border-color: var(--primary-color) !important;
@@ -225,7 +228,7 @@ input[type="color"]:hover,
 }
 .custom-person-card:hover {
     box-shadow: 0 4px 20px var(--primary-color) !important;
-    transform: scale(1.05) !important;
+    transform: scale(1.02) !important;
 }
 .person-email {
     font-family: var(--button-font) !important;
