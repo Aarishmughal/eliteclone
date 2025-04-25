@@ -27,74 +27,86 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="byYear-pane" role="tabpanel" aria-labelledby="byYear" tabindex="0">
-                @foreach ($publicationsByYear as $publicationByYear)
-                    
+                @foreach ($publicationsByYear as $year => $publications)
+                    <div class="mt-3">
+                        <h5 class="fw-bold border-bottom">Year {{ $year }} <em>({{ $publications->count() }})</em>
+                        </h5>
+                        <ul class="text-body" style="font-family: 'Inter'">
+                            @if ($publications->isEmpty())
+                                <p class="text-danger">No publications found for this year.</p>
+                            @else
+                                @foreach ($publications as $publication)
+                                    <li>
+                                        @foreach ($authors as $author)
+                                            @if ($author->publication_id == $publication->id)
+                                                {{ $author->last_name . ' ' . $author->first_name }}
+                                            @endif
+                                        @endforeach
+                                        . {{ $publication->year }}. {{ $publication->title }},
+                                        @foreach ($journals as $journal)
+                                            @if ($journal->publication_id == $publication->id)
+                                                <em>
+                                                    {{ $journal->name }}
+                                                    {{ $journal->edition }}
+                                                    {{ $journal->volume }}
+                                                    {{ $journal->page_number }}.
+                                                </em>
+                                            @endif
+                                        @endforeach
+                                    </li>
+                                    @if ($publication->iris)
+                                        <a href="{{ $publication->iris }}">IRIS Link</a>
+                                    @endif
+                                    @if ($publication->doi)
+                                        - DOI: <a href="{{ $publication->doi }}">{{ $publication->doi }}</a>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
                 @endforeach
-                <div class="mt-3">
-                    <h5 class="fw-bold border-bottom">Year 2023</h5>
-                    <ul class="text-body" style="font-family: 'Inter'">
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                    </ul>
-                </div>
-                <div class="mt-3">
-                    <h5 class="fw-bold border-bottom">Year 2022</h5>
-                    <ul class="text-body" style="font-family: 'Inter'">
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                    </ul>
-                </div>
             </div>
             <div class="tab-pane fade" id="byType-pane" role="tabpanel" aria-labelledby="byType" tabindex="0">
-                <div class="mt-3">
-                    <h5 class="fw-bold border-bottom">TYPE ABC</h5>
-                    <ul class="text-body" style="font-family: 'Inter'">
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                        <li>
-                            AUTHORS, YEAR, TITLE, TYPE, JOURNAL_NAME, JOURNAL_EDITION, JOURNAL_VOLUME, JOURNAL_PAGE_NUMBER,
-                            DOI_LINK, IRIS_LINK
-                        </li>
-                    </ul>
-                </div>
+                @foreach ($publicationsByType as $type => $publications)
+                    <div class="mt-3">
+                        <h5 class="fw-bold border-bottom">{{ $type }} <em>({{ $publications->count() }})</em>
+                        </h5>
+                        <ul class="text-body" style="font-family: 'Inter'">
+                            @if ($publications->isEmpty())
+                                <div class="alert alert-info mt-3" role="alert">
+                                    No publications found for this type.
+                                </div>
+                            @else
+                                @foreach ($publications as $publication)
+                                    <li>
+                                        @foreach ($authors as $author)
+                                            @if ($author->publication_id == $publication->id)
+                                                {{ $author->last_name . ' ' . $author->first_name }}
+                                            @endif
+                                        @endforeach
+                                        . {{ $publication->year }}. {{ $publication->title }},
+                                        @foreach ($journals as $journal)
+                                            @if ($journal->publication_id == $publication->id)
+                                                <em>
+                                                    {{ $journal->name }}
+                                                    {{ $journal->edition }}
+                                                    {{ $journal->volume }}
+                                                    {{ $journal->page_number }}.
+                                                </em>
+                                            @endif
+                                        @endforeach
+                                    </li>
+                                    @if ($publication->iris)
+                                        <a href="{{ $publication->iris }}">IRIS Link</a>
+                                    @endif
+                                    @if ($publication->doi)
+                                        - DOI: <a href="{{ $publication->doi }}">{{ $publication->doi }}</a>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
