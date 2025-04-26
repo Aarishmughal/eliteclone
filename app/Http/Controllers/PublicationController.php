@@ -42,7 +42,8 @@ class PublicationController extends Controller
             $publication = Publication::create([
                 'title' => $request->title,
                 'type' => $request->type,
-                'year' => Carbon::parse($request->year)->format('Y'),
+                // 'year' => Carbon::parse($request->year)->format('Y'),
+                'year' => $request->year,
                 'doi' => $request->doi,
                 'iris' => $request->iris,
             ]);
