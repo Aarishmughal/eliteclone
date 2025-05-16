@@ -180,7 +180,7 @@
 
             publicationsData.forEach(publication => {
                 const option = document.createElement('option');
-                option.value = publication.title + ". " + publication.year; // Adjust field if needed
+                option.value = publication.id; // Adjust field if needed
                 option.textContent = publication.title + ". " + publication.year;
                 select.appendChild(option);
             });

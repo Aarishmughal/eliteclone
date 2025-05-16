@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ResearchTopic extends Model
+class ResearchTopicPublication extends Model
 {
     protected $fillable = [
-        'image',
-        'title',
-        'description',
+        'research_topic_id',
+        'publication_id',
     ];
 }
