@@ -39,10 +39,11 @@
                                     <li>
                                         @foreach ($authors as $author)
                                             @if ($author->publication_id == $publication->id)
-                                                {{ $author->last_name . ' ' . $author->first_name }}
+                                                {{ $author->last_name . ' ' . $author->middle_name . ' ' . $author->first_name }}
                                             @endif
                                         @endforeach
-                                        . {{ $publication->year }}. {{ $publication->title }},
+                                        . {{ \Carbon\Carbon::parse($publication->year)->format('Y') }}.
+                                        {{ $publication->title }},
                                         @foreach ($journals as $journal)
                                             @if ($journal->publication_id == $publication->id)
                                                 <em>
@@ -81,10 +82,11 @@
                                     <li>
                                         @foreach ($authors as $author)
                                             @if ($author->publication_id == $publication->id)
-                                                {{ $author->last_name . ' ' . $author->first_name }}
+                                                {{ $author->last_name . ' ' . $author->middle_name . ' ' . $author->first_name }}
                                             @endif
                                         @endforeach
-                                        . {{ $publication->year }}. {{ $publication->title }},
+                                        . {{ \Carbon\Carbon::parse($publication->year)->format('Y') }}.
+                                        {{ $publication->title }},
                                         @foreach ($journals as $journal)
                                             @if ($journal->publication_id == $publication->id)
                                                 <em>

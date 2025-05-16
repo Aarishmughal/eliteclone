@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\ResearchTopicController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,7 +62,7 @@ Route::middleware('auth', 'admin')->group(function () {
         Route::post('admin/projects/delete/{id}', 'delete')->name("projects.delete");
     });
 
-    // Controller Routes: Project
+    // Controller Routes: Publication
     Route::controller(PublicationController::class)->group(function () {
         Route::get('admin/publications', 'index')->name("publications.index");
         Route::get('admin/publications/add', 'viewAdd')->name("publications.viewAdd");
@@ -69,5 +70,14 @@ Route::middleware('auth', 'admin')->group(function () {
         Route::get('admin/publications/edit/{id}', 'viewEdit')->name("publications.viewEdit");
         Route::post('admin/publications/edit/{id}', 'edit')->name("publications.edit");
         Route::post('admin/publications/delete/{id}', 'delete')->name("publications.delete");
+    });
+    // Controller Routes: Research Topic
+    Route::controller(ResearchTopicController::class)->group(function () {
+        Route::get('admin/researchTopics', 'index')->name("researchTopics.index");
+        Route::get('admin/researchTopics/add', 'viewAdd')->name("researchTopics.viewAdd");
+        Route::post('admin/researchTopics/add', 'add')->name("researchTopics.add");
+        Route::get('admin/researchTopics/edit/{id}', 'viewEdit')->name("researchTopics.viewEdit");
+        Route::post('admin/researchTopics/edit/{id}', 'edit')->name("researchTopics.edit");
+        Route::post('admin/researchTopics/delete/{id}', 'delete')->name("researchTopics.delete");
     });
 });

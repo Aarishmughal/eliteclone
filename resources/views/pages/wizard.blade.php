@@ -68,7 +68,8 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg">
-                            <a href="#" class="btn btn-light-outline btn-lg w-100 text-start"><i
+                            <a href="{{ Route('researchTopics.viewAdd') }}"
+                                class="btn btn-light-outline btn-lg w-100 text-start"><i
                                     class="bi bi-file-bar-graph me-2"></i>Add Research Papers</a>
                         </div>
                     </div>
